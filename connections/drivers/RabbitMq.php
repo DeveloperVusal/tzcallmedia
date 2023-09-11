@@ -6,7 +6,7 @@ use PhpAmqpLib\Channel\AMQPChannel;
 
 use Connections\InterfaceDrivers;
 
-class RabbitMq implements InterfaceDrivers {
+final class RabbitMq implements InterfaceDrivers {
 
     private AMQPChannel $channel;
     private AMQPStreamConnection $connection;
