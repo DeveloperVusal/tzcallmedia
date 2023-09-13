@@ -1,8 +1,0 @@
-<?php
-require_once(__DIR__.'/../registers.php');
-
-use Executers\Url;
-
-$url = new Url('https://laravel.com');
-
-print_r($url->info());

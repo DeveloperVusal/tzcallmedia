@@ -1,0 +1,8 @@
+<?php
+require_once(__DIR__.'/../registers.php');
+
+use Executers\Select;
+
+$url = new Select();
+
+$url->getResult();
