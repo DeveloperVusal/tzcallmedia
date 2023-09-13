@@ -3,7 +3,6 @@
 require_once __DIR__.'/vendor/autoload.php';
 
 function app_autoloader($className) {
-    $defaultClassName = $className;
 	$className = str_replace('\\', '/', $className);
 	$dirPath = str_replace('\\', '/', dirname(__FILE__));
 

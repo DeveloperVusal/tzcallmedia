@@ -1,5 +1,5 @@
 <?php
-namespace Executers;
+namespace Services;
 
 use Connections\Conn;
 use Connections\Drivers\ClickHouse;

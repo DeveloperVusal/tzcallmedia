@@ -2,7 +2,7 @@
 require_once(__DIR__.'/../registers.php');
 
 use Connections\Conn;
-use Executers\Queue;
+use Services\Queue;
 
 $queue = new Queue();
 $rabbitMq = Conn::driver('\\Connections\\Drivers\\RabbitMq', 'rabbitmq', 5672, 'guest', 'guest');
