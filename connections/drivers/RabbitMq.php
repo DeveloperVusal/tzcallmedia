@@ -4,9 +4,7 @@ namespace Connections\Drivers;
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Channel\AMQPChannel;
 
-use Connections\InterfaceDrivers;
-
-final class RabbitMq implements InterfaceDrivers {
+final class RabbitMq {
 
     private AMQPChannel $channel;
     private AMQPStreamConnection $connection;
