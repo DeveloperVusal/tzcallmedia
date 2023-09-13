@@ -1,16 +1,17 @@
 version: '3.7'
 
 services:
-  
+
   clickhouse-server:
     image: yandex/clickhouse-server
     container_name: clickhouse-server
     ports:
       - '8123:8123'
+      - '9004:9004'
     volumes:
       - ./db:/var/lib/clickhouse
     ulimits:
-      nofile: 262144 
+      nofile: 262144
 
   database_mariadb:
     image: mariadb:latest
@@ -21,4 +22,4 @@ services:
       MARIADB_USER: root
       MARIADB_PASSWORD: root
     ports:
-      - "3306:3306"
+      - '3306:3306'

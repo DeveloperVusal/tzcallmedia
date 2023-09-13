@@ -12,22 +12,24 @@ class Queue {
     
     function __construct()
     {
-        $this->mariadb = Conn::driver(get_class($this->mariadb), 'localhost', 3306, 'root', 'root', 'callmedia');
-        $this->clhouse = Conn::driver(get_class($this->clhouse), 'localhost', 9004, 'default ', '', 'callmedia');
+        $this->mariadb = Conn::driver('Connections\\Drivers\\MariaDB', 'localhost', 3306, 'root', 'root', 'callmedia');
+        // $this->clhouse = Conn::driver('Connections\\Drivers\\ClickHouse', 'localhost', 8123, 'default ', '', 'default');
     }
 
     public function setDb(string $url): void
     {
         $curl = new Url($url);
 
+        // mysql
         $sth = $this->mariadb->dbn()->prepare("INSERT INTO urls_data (url, length) VALUES(?, ?)");
         $isset = $sth->execute([$curl->info()['url'], $curl->getContentLength()]);
 
         echo ($isset)?"  [+] Set is successfully in MySQL \n":"  [x] Set is not successfully in MySQL\n";
 
-        $sth2 = $this->clhouse->dbn()->prepare("INSERT INTO urls_data (url, length) VALUES(?, ?)");
-        $isset2 = $sth2->execute([$curl->info()['url'], $curl->getContentLength()]);
+        // // clickhouse
+        // $sth2 = $this->clhouse->dbn()->prepare("INSERT INTO urls_data (url, length) VALUES(?, ?)");
+        // $isset2 = $sth2->execute([$curl->info()['url'], $curl->getContentLength()]);
 
-        echo ($isset2)?"  [+] Set is successfully in ClickHouse \n":"  [x] Set is not successfully in ClickHouse\n";
+        // echo ($isset2)?"  [+] Set is successfully in ClickHouse \n":"  [x] Set is not successfully in ClickHouse\n";
     }
 }
