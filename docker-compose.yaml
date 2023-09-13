@@ -2,12 +2,21 @@ version: '3.7'
 
 services:
 
+  app:
+    container_name: app
+    build:
+      dockerfile: Dockerfile
+    depends_on:
+      - clickhouse-server
+      - database_mariadb
+
   clickhouse-server:
     image: yandex/clickhouse-server
     container_name: clickhouse-server
+    env_file:
+      - .env
     ports:
-      - '8123:8123'
-      - '9004:9004'
+      - '${CLICKHOUSE_PORT}:${CLICKHOUSE_PORT}'
     volumes:
       - ./db:/var/lib/clickhouse
     ulimits:
@@ -16,10 +25,23 @@ services:
   database_mariadb:
     image: mariadb:latest
     container_name: database_mariadb
+    env_file:
+      - .env
     environment:
-      MARIADB_DATABASE: callmedia
-      MARIADB_ROOT_PASSWORD: root
-      MARIADB_USER: root
-      MARIADB_PASSWORD: root
+      MARIADB_DATABASE: ${MARIADB_DATABASE}
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
+      MARIADB_USER: ${MARIADB_USER}
+      MARIADB_PASSWORD: ${MARIADB_PASSWORD}
     ports:
-      - '3306:3306'
+      - '${MARIADB_PORT}:${MARIADB_PORT}'
+
+  rabbitmq:
+    image: rabbitmq:management
+    container_name: rabbitmq
+    env_file:
+      - .env
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS}
+    ports:
+      - '${RABBITMQ_PORT}:${RABBITMQ_PORT}'

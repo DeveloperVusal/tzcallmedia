@@ -10,7 +10,7 @@ class Select {
     
     function __construct()
     {
-        $this->mariadb = Conn::driver('\\Connections\\Drivers\\MariaDB', 'localhost', 3306, 'root', 'root', 'callmedia');
+        $this->mariadb = Conn::driver('Connections\\Drivers\\MariaDB', 'database_mariadb', 3306, 'uroot', 'uroot', 'callmedia');
     }
 
     public function getResult(): void

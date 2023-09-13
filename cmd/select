@@ -3,6 +3,6 @@ require_once(__DIR__.'/../registers.php');
 
 use Executers\Select;
 
-$url = new Select();
+$sel = new Select();
 
-$url->getResult();
+$sel->getResult();

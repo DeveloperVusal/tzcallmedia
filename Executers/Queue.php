@@ -12,7 +12,7 @@ class Queue {
     
     function __construct()
     {
-        $this->mariadb = Conn::driver('Connections\\Drivers\\MariaDB', 'localhost', 3306, 'root', 'root', 'callmedia');
+        $this->mariadb = Conn::driver('Connections\\Drivers\\MariaDB', 'database_mariadb', 3306, 'uroot', 'uroot', 'callmedia');
         // $this->clhouse = Conn::driver('Connections\\Drivers\\ClickHouse', 'localhost', 8123, 'default ', '', 'default');
     }
 
