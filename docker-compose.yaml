@@ -9,6 +9,7 @@ services:
     depends_on:
       - clickhouse-server
       - database_mariadb
+      - rabbitmq
 
   clickhouse-server:
     image: yandex/clickhouse-server

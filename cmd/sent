@@ -17,7 +17,7 @@ $dataRows = [
     'https://packagist.org/',
     'https://laravel.com/',
 ];
-$rabbitMq = Conn::driver('\\Connections\\Drivers\\RabbitMq', 'rabbitmq', 5672, 'guest', 'guest');
+$rabbitMq = Conn::driver('\\Connections\\Drivers\\RabbitMq', getenv('RABBITMQ_HOST'), getenv('RABBITMQ_PORT'), getenv('RABBITMQ_DEFAULT_USER'), getenv('RABBITMQ_DEFAULT_PASS'));
 
 foreach ($dataRows as $url) {
     $msg = new AMQPMessage($url);

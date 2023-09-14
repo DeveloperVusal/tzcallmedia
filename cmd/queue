@@ -5,7 +5,7 @@ use Connections\Conn;
 use Services\Queue;
 
 $queue = new Queue();
-$rabbitMq = Conn::driver('\\Connections\\Drivers\\RabbitMq', 'rabbitmq', 5672, 'guest', 'guest');
+$rabbitMq = Conn::driver('\\Connections\\Drivers\\RabbitMq', getenv('RABBITMQ_HOST'), getenv('RABBITMQ_PORT'), getenv('RABBITMQ_DEFAULT_USER'), getenv('RABBITMQ_DEFAULT_PASS'));
 $channel = $rabbitMq->channel();
 
 $channel->queue_declare('callmedia', false, false, false, false);

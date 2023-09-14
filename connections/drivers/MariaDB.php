@@ -1,6 +1,7 @@
 <?php
 namespace Connections\Drivers;
 
+use Exception;
 use PDO;
 
 final class MariaDB {
@@ -17,7 +18,7 @@ final class MariaDB {
 
             $this->init();
         } catch (\PDOException $e) {
-            return $e->getMessage();
+            throw new Exception($e->getMessage());
         }
     }
 

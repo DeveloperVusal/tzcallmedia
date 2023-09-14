@@ -12,7 +12,7 @@ class Queue {
     
     function __construct()
     {
-        $this->mariadb = Conn::driver('Connections\\Drivers\\MariaDB', 'database_mariadb', 3306, 'uroot', 'uroot', 'callmedia');
+        $this->mariadb = Conn::driver('Connections\\Drivers\\MariaDB', getenv('MARIADB_HOST'), getenv('MARIADB_PORT'), getenv('MARIADB_USER'), getenv('MARIADB_PASSWORD'), getenv('MARIADB_DATABASE'));
         // $this->clhouse = Conn::driver('Connections\\Drivers\\ClickHouse', 'localhost', 8123, 'default ', '', 'default');
     }
 
@@ -22,7 +22,7 @@ class Queue {
 
         // mysql
         $sth = $this->mariadb->dbn()->prepare("INSERT INTO urls_data (url, length) VALUES(?, ?)");
-        $isset = $sth->execute([$curl->info()['url'], $curl->getContentLength()]);
+        $isset = $sth->execute([$curl->request->info()['url'], $curl->getContentLength()]);
 
         echo ($isset)?"  [+] Set is successfully in MySQL \n":"  [x] Set is not successfully in MySQL\n";
 

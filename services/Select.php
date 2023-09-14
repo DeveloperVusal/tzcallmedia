@@ -10,7 +10,7 @@ class Select {
     
     function __construct()
     {
-        $this->mariadb = Conn::driver('Connections\\Drivers\\MariaDB', 'database_mariadb', 3306, 'uroot', 'uroot', 'callmedia');
+        $this->mariadb = Conn::driver('Connections\\Drivers\\MariaDB', getenv('MARIADB_HOST'), getenv('MARIADB_PORT'), getenv('MARIADB_USER'), getenv('MARIADB_PASSWORD'), getenv('MARIADB_DATABASE'));
     }
 
     public function getResult(): void
